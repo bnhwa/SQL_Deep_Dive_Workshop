@@ -120,7 +120,7 @@ VALUES
     ("jwl1232","Jae","Lee","professor","CS");
     /* below are error causing statements if they were to be run 
     (change the commas and semicolons to proper syntax if u test it out) */
-    -- ("bnh2128","Bailey","Hwa","student","CS"), -- duplicate primary key
+    --  ("bnh2128","Bailey","Hwa","student","CS"), -- duplicate primary key
     
 	/*assuming the row with "ja3454" wasn't inserted,  the below will return an error because
     we defined a constraint on the 'department' attribute  in the table 'professor' which as a foreign key
@@ -190,6 +190,8 @@ VIEWS:
  Example: professor info
 */
 Drop View If Exists prof_info;
+
+
 create view prof_info as
 select t.name_first, t.name_last, o.uni,o.status,o.advisees from
 (
@@ -207,6 +209,8 @@ inner join
 (select uni,name_first,name_last from columbia_people where role = "professor") t
 on o.uni=t.uni;
 -- uncomment and see! 
+-- select * from student;
+-- select * from professor;
 -- select * from prof_info;
 
 
@@ -294,4 +298,5 @@ DROP USER IF EXISTS 'sneaky_student'@'localhost';
 CREATE USER 'sneaky_student'@'localhost' IDENTIFIED BY 'password';
 -- only give permission for student to look at views which give non-confidential info
 GRANT SELECT ON sql_workshop.prof_info TO 'sneaky_student'@'localhost';
+-- REVOKE SELECT ON sql_workshop.prof_info FROM 'sneaky_student'@'localhost';
 FLUSH PRIVILEGES;

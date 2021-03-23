@@ -3,6 +3,7 @@
 */
 use sql_workshop;
 -- find people whose name starts with 'Ra'
+
 Select * from columbia_people where name_first like 'RA%' ;
 
 
@@ -21,7 +22,7 @@ on p.uni = a.advisor
 ) o
 inner join 
 (select uni,name_first,name_last from columbia_people where role = "professor") t
-on o.uni=t.uni
+on o.uni=t.uni;
 
-
+select department, count(*) from professor group by department;
 -- select count(*) from columbia_people where LEFT(uni, 2)='df';
